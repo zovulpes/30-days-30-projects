@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Список дел</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="todo-app">
+        <h2>Список дел <img src="images/icon.png" /></h2>
+        <div class="row">
+          <input
+            type="text"
+            id="input-box"
+            placeholder="Введите текст"
+          /><button id="add-button" onclick="addTask()">Добавить</button>
+        </div>
+        <ul id="list-container">
+          <!-- <li class="c">Задача 1</li>
+          <li>Задача 2</li>
+          <li>Задача 3</li> -->
+        </ul>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
