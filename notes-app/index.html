@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Приложение для заметок</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1><img src="images/notes.png" />Заметки</h1>
+      <button id="add-button">
+        <img src="images/edit.png" />Создать заметку
+      </button>
+      <div class="notes-container">
+        <!-- <p contenteditable="true" class="input-box">
+          <img src="images/delete.png" />
+        </p> -->
+      </div>
+    </div>
+    <script>
+      const notesContainer = document.querySelector(".notes-container");
+      const addBtn = document.getElementById("add-button");
+      let notes = document.querySelectorAll(".input-box");
+
+      function updateStorage() {
+        localStorage.setItem("notes", notesContainer.innerHTML);
+      }
+      addBtn.addEventListener("click", () => {
+        let newNote = document.createElement("p");
+        let imgDelete = document.createElement("img");
+        newNote.setAttribute("contenteditable", "true");
+        newNote.className = "input-box";
+        imgDelete.setAttribute("src", "images/delete.png");
+
+        notesContainer.appendChild(newNote).appendChild(imgDelete);
+      });
+
+      notesContainer.addEventListener("click", function (e) {
+        if (e.target.tagName === "IMG") {
+          e.target.parentElement.remove();
+          updateStorage();
+        } else if ((e.target.tagName = "P")) {
+          notes = document.querySelectorAll(".input-box");
+          notes.forEach((nt) => {
+            nt.onkeyup = function () {
+              updateStorage();
+            };
+          });
+        }
+      });
+    </script>
+  </body>
+</html>
