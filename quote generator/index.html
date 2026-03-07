@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Цитата дня</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="quote-box">
+      <h2>Цитата дня</h2>
+      <blockquote>Загрузка...</blockquote>
+      <span>Загрузка...</span>
+      <div>
+        <button>Новая цитата</button>
+        <button><img src="./icons/share.png" />Поделиться</button>
+      </div>
+    </div>
+    <script>
+      const api_url = "https://api.quotable.io/random";
+      async function getquote(url) {
+        const response = await fetch(url);
+        var data = await response.json;
+        console.log(data);
+      }
+
+      getquote();
+    </script>
+  </body>
+</html>
