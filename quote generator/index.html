@@ -5,26 +5,56 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Цитата дня</title>
     <link rel="stylesheet" href="style.css" />
+    <script
+      type="text/javascript"
+      src="https://vk.com/js/api/share.js?95"
+      charset="windows-1251"
+    ></script>
   </head>
   <body>
     <div class="quote-box">
       <h2>Цитата дня</h2>
-      <blockquote>Загрузка...</blockquote>
-      <span>Загрузка...</span>
+      <blockquote id="quote">Загрузка...</blockquote>
+      <span id="author">Загрузка...</span>
       <div>
-        <button>Новая цитата</button>
-        <button><img src="./icons/share.png" />Поделиться</button>
+        <button id="new-quote">Новая цитата</button>
+        <button id="share">Поделиться</button>
       </div>
     </div>
     <script>
-      const api_url = "https://api.quotable.io/random";
+      const api_url = "https://quote-garden.herokuapp.com/api/v3/quotes/random";
+
+      const quote = document.getElementById("quote");
+      const author = document.getElementById("author");
+      const newQuoteBtn = document.getElementById("new-quote");
+      const shareBtn = document.getElementById("share");
+
       async function getquote(url) {
         const response = await fetch(url);
-        var data = await response.json;
-        console.log(data);
+        var data = await response.json();
+
+        quote.innerHTML = data.data[0].quoteText;
+        author.innerHTML = data.data[0].quoteAuthor;
       }
 
-      getquote();
+      getquote(api_url);
+
+      newQuoteBtn.addEventListener("click", () => {
+        getquote(api_url);
+      });
+
+      function vk() {
+        window.open(
+          "https://vk.com/share.php?url={vk.com/zovulpes}",
+          "ВКонтакте",
+          "width=600",
+          "height=300",
+        );
+      }
+
+      shareBtn.addEventListener("click", () => {
+        vk();
+      });
     </script>
   </body>
 </html>
