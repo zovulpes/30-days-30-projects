@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Генератор QR</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <p>Введите текст или URL</p>
+      <input type="text" placeholder="Текст или URL" id="text" />
+      <div id="imgBox">
+        <img src="" id="qrImage" />
+      </div>
+      <button id="generate">Сгенерировать QR-код</button>
+    </div>
+    <script>
+      const api_url =
+        "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=";
+      const qrText = document.getElementById("text");
+      const qrImage = document.getElementById("qrImage");
+      const imgBox = document.getElementById("imgBox");
+
+      function generateQR() {
+        if (qrText.value.length > 0) {
+          qrImage.src = api_url + qrText.value;
+          imgBox.classList.add("show-img");
+        } else {
+          qrText.classList.add("error");
+          setTimeout(() => {
+            qrText.classList.remove("error");
+          }, 500);
+        }
+      }
+
+      const generateBtn = document.getElementById("generate");
+
+      generateBtn.addEventListener("click", () => {
+        generateQR();
+      });
+    </script>
+  </body>
+</html>
