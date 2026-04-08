@@ -51,8 +51,6 @@
       const ifUpCase = document.getElementById("upperCase");
       const ifSpecial = document.getElementById("special");
 
-      const allChars = upperCase + lowerCase + numbers + symbols;
-
       generateBtn.addEventListener("click", function (e) {
         if (lenghtBox.value == "") {
           lenghtBox.classList.remove("error");
@@ -60,23 +58,40 @@
           lenghtBox.classList.add("error");
         } else {
           let password = "";
-          if (ifNumbers.value == this) {
-            password += numbers[Math.floor(Math.random() * numbers.length)];
-          }
-          if (ifLoCase.value == true) {
-            password += lowerCase[Math.floor(Math.random() * lowerCase.length)];
-          }
-          if (ifUpCase.value == true) {
-            password += upperCase[Math.floor(Math.random() * upperCase.length)];
-          }
-          if (ifSpecial.value == true) {
-            password += special[Math.floor(Math.random() * symbols.length)];
-          }
+          let allChars = "";
+          if (
+            ifNumbers.checked +
+              ifLoCase.checked +
+              ifUpCase.checked +
+              ifSpecial.checked ==
+            0
+          ) {
+            alert("Вам нужно выбрать, из чего составляется пароль");
+          } else {
+            if (ifNumbers.checked) {
+              password += numbers[Math.floor(Math.random() * numbers.length)];
+              allChars += numbers;
+            }
+            if (ifLoCase.checked) {
+              password +=
+                lowerCase[Math.floor(Math.random() * lowerCase.length)];
+              allChars += lowerCase;
+            }
+            if (ifUpCase.checked) {
+              password +=
+                upperCase[Math.floor(Math.random() * upperCase.length)];
+              allChars += upperCase;
+            }
+            if (ifSpecial.checked) {
+              password += symbols[Math.floor(Math.random() * symbols.length)];
+              allChars += symbols;
+            }
 
-          while (lenghtBox.value > password.length) {
-            password += allChars[Math.floor(Math.random() * allChars.length)];
+            while (Number(lenghtBox.value) > password.length) {
+              password += allChars[Math.floor(Math.random() * allChars.length)];
+            }
+            passwordBox.value = password;
           }
-          passwordBox.value = password;
         }
       });
     </script>
