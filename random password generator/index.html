@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Генератор паролей</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>
+        Сгенерировать <br />
+        <span>случайный пароль</span>
+      </h1>
+      <input
+        type="text"
+        placeholder="Введите длину пароля"
+        id="lenght"
+        class="lenght"
+      />
+      <div class="settings">
+        <p>Цифры</p>
+        <input type="checkbox" id="numbers" />
+        <p>Заглавные буквы</p>
+        <input type="checkbox" id="upperCase" />
+        <p>Маленькие буквы</p>
+        <input type="checkbox" id="lowerCase" />
+        <p>Специальные символы</p>
+        <input type="checkbox" id="special" />
+      </div>
+      <div class="display">
+        <input type="text" id="password" placeholder="Пароль" />
+        <img src="images/copy.png" />
+      </div>
+      <button id="generate">
+        <img src="images/generate.png" />Сгенерировать пароль
+      </button>
+    </div>
+    <script>
+      const passwordBox = document.getElementById("password");
+      const lenghtBox = document.getElementById("lenght");
+      const generateBtn = document.getElementById("generate");
+
+      const upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+      const lowerCase = "abcdefghijklmnopqrstuvwxyz";
+      const numbers = "0123456789";
+      const symbols = "@#$%^&*()_+-={}[]\|/;':?,.<>";
+
+      const ifNumbers = document.getElementById("numbers");
+      const ifLoCase = document.getElementById("lowerCase");
+      const ifUpCase = document.getElementById("upperCase");
+      const ifSpecial = document.getElementById("special");
+
+      const allChars = upperCase + lowerCase + numbers + symbols;
+
+      generateBtn.addEventListener("click", function (e) {
+        if (lenghtBox.value == "") {
+          lenghtBox.classList.remove("error");
+          void lenghtBox.offsetWidth;
+          lenghtBox.classList.add("error");
+        } else {
+          let password = "";
+          if (ifNumbers.value == this) {
+            password += numbers[Math.floor(Math.random() * numbers.length)];
+          }
+          if (ifLoCase.value == true) {
+            password += lowerCase[Math.floor(Math.random() * lowerCase.length)];
+          }
+          if (ifUpCase.value == true) {
+            password += upperCase[Math.floor(Math.random() * upperCase.length)];
+          }
+          if (ifSpecial.value == true) {
+            password += special[Math.floor(Math.random() * symbols.length)];
+          }
+
+          while (lenghtBox.value > password.length) {
+            password += allChars[Math.floor(Math.random() * allChars.length)];
+          }
+          passwordBox.value = password;
+        }
+      });
+    </script>
+  </body>
+</html>
