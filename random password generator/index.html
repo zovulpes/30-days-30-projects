@@ -30,7 +30,7 @@
       </div>
       <div class="display">
         <input type="text" id="password" placeholder="Пароль" />
-        <img src="images/copy.png" />
+        <img src="images/copy.png" onclick="copyPassword()" />
       </div>
       <button id="generate">
         <img src="images/generate.png" />Сгенерировать пароль
@@ -94,6 +94,11 @@
           }
         }
       });
+
+      function copyPassword() {
+        pwsswordBox.select();
+        document.execCommand("copy");
+      }
     </script>
   </body>
 </html>
