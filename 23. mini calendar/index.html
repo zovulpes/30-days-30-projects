@@ -27,88 +27,35 @@
 
       let today = new Date();
 
-      var yearNow = today.getFullYear();
-      var monthNow = today.getMonth();
-      var dateNow = today.getDate();
-      var dayNow = today.getDay();
+      days = [
+        "Sunday",
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+      ];
 
-      console.log(
-        today.getFullYear(),
-        today.getMonth(),
-        today.getDate(),
-        today.getDay(),
-      );
+      months = [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December",
+      ];
 
-      switch (dayNow) {
-        case 0:
-          dayNow = "Sunday";
-          break;
-        case 1:
-          dayNow = "Monday";
-          break;
-        case 2:
-          dayNow = "Tuesday";
-          break;
-        case 3:
-          dayNow = "Wednesday";
-          break;
-        case 4:
-          dayNow = "Thursday";
-          break;
-        case 5:
-          dayNow = "Friday";
-          break;
-        case 6:
-          dayNow = "Saturday";
-          break;
-      }
-
-      switch (monthNow) {
-        case 0:
-          monthNow = "January";
-          break;
-        case 1:
-          monthNow = "February";
-          break;
-        case 2:
-          monthNow = "March";
-          break;
-        case 3:
-          monthNow = "April";
-          break;
-        case 4:
-          monthNow = "May";
-          break;
-        case 5:
-          monthNow = "June";
-          break;
-        case 6:
-          monthNow = "July";
-          break;
-        case 7:
-          monthNow = "August";
-          break;
-        case 8:
-          monthNow = "September";
-          break;
-        case 9:
-          monthNow = "October";
-          break;
-        case 10:
-          monthNow = "November";
-          break;
-        case 11:
-          monthNow = "December";
-          break;
-      }
-
-      console.log(dayNow);
-      console.log(monthNow);
-
-      year.innerHTML = yearNow;
-      month.innerHTML = monthNow;
-      date.innerHTML = dateNow;
-      day.innerHTML = dayNow;
+      year.innerHTML = (today.getDate() < 10 ? "0" : "") + today.getFullYear();
+      month.innerHTML = months[today.getMonth()];
+      date.innerHTML = today.getDate();
+      day.innerHTML = days[today.getDay()];
     </script>
   </body>
 </html>
